@@ -1,0 +1,341 @@
+{
+  "entity": {
+    "number": {
+      "hvac_mode_auto": {
+        "name": "Automatisch"
+      },
+      "hvac_mode_cool": {
+        "name": "Kühlen"
+      },
+      "hvac_mode_heat": {
+        "name": "Heizen"
+      }
+    },
+    "select": {
+      "hvac_mode": {
+        "name": "HVAC-Modus",
+        "state": {
+          "auto": "Automatisch",
+          "cool": "Kühlen",
+          "heat": "Heizen",
+          "dry": "Entfeuchten",
+          "fan_only": "Nur Ventilator",
+          "off": "Ausgeschaltet"
+        }
+      },
+      "fan_mode": {
+        "name": "Ventilatorgeschwindigkeit",
+        "state": {
+          "auto": "Automatisch",
+          "low": "Niedrig",
+          "medium": "Mittel",
+          "high": "Hoch"
+        }
+      }
+    }
+  },
+  "selector": {
+    "countries": {
+      "options": {
+        "eu": "Europa",
+        "us": "Amerika",
+        "in": "Indien",
+        "cn": "China",
+        "sg": "Singapur"
+      }
+    },
+    "device_type": {
+      "options": {
+        "climate": "Klimaanlage",
+        "generic": "Allgemeines Gerät",
+        "sensor": "Temperatur-/Feuchtigkeitssensor (experimenteel)"
+      }
+    },
+    "hvac_modes": {
+      "options": {
+        "auto": "Automatisch",
+        "cool": "Kühlen",
+        "heat": "Heizen",
+        "dry": "Entfeuchten",
+        "fan_only": "Nur Ventilator",
+        "off": "Ausgeschaltet"
+      }
+    },
+    "fan_modes": {
+      "options": {
+        "auto": "Automatisch",
+        "low": "Niedrig",
+        "medium": "Mittel",
+        "high": "Hoch"
+      }
+    },
+    "presets_modes": {
+      "options": {
+        "home": "Zuhause",
+        "sleep": "Schlafen",
+        "eco": "Eco",
+        "comfort": "Komfort",
+        "away": "Abwesend"
+      }
+    },
+    "hvac_presets": {
+      "options": {
+        "fan_hvac_mode": "Standard-Ventilatorgeschwindigkeit",
+        "temp_hvac_mode": "Standardtemperatur"
+      }
+    },
+    "optional_entities": {
+      "options": {
+        "current_temperature": "Temperatursensor",
+        "current_humidity": "Feuchtigkeitssensor",
+        "hvac_mode": "HVAC-Steuerung",
+        "fan_mode": "Ventilatorsteuerung",
+        "temp_setpoint": "Temperatursteuerung"
+      }
+    },
+    "power_on_modes": {
+      "options": {
+        "never": "Nie",
+        "always": "Immer",
+        "only_off": "Nur wenn ausgeschaltet (nicht empfohlen)"
+      }
+    }
+  },
+  "config": {
+    "step": {
+      "hub_settings": {
+        "title": "Hub-Einstellungen",
+        "description": "Konfigurieren Sie die Zugangsdaten und Hub-Optionen.",
+        "data": {
+          "access_id": "Tuya Access ID",
+          "access_secret": "Tuya Access Secret",
+          "country": "Tuya Länder-API",
+          "enable_pulsar": "Tuya Pulsar Stream aktivieren",
+          "climate_update_interval": "Aktualisierungsintervall der Klimaanlage",
+          "sensor_update_interval": "Aktualisierungsintervall des Temperatur-/Feuchtigkeitssensors"
+        }
+      }
+    },
+    "error": {
+      "cannot_change_access_id": "Die Access ID kann für einen bestehenden Hub nicht geändert werden.",
+      "cannot_connect_to_tuya": "Verbindung zu den Tuya-Servern fehlgeschlagen. Bitte überprüfen Sie Ihr Netzwerk.",
+      "invalid_auth": "Authentifizierung fehlgeschlagen: Ungültige Access ID oder Access Secret.",
+      "invalid_data_center": "Authentifizierung fehlgeschlagen: Ungültiges Rechenzentrum."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Tuya Smart IR Konfiguration",
+        "menu_options": {
+          "device_management": "Geräteverwaltung",
+          "presets_management": "Global Presets Management",
+          "hub_settings": "Hub-Einstellungen"
+        }
+      },
+      "device_management": {
+        "title": "Geräteverwaltung",
+        "menu_options": {
+          "climate_management": "Klimaanlagenverwaltung",
+          "generic_management": "Verwaltung allgemeiner Geräte",
+          "sensor_management": "Verwaltung von Temperatur-/Feuchtigkeitssensoren",
+          "back_to_init": "⬅️ Zurück zum Hauptmenü"
+        }
+      },
+      "presets_management": {
+        "title": "Global Presets Management",
+        "description": "Select a preset and a mode to configure.",
+        "data": {
+          "preset": "Preset",
+          "hvac_mode": "Mode"
+        }
+      },
+      "preset_configure": {
+        "title": "Preset Configuration",
+        "description": "Configure temperature and fan mode for this preset.",
+        "data": {
+          "preset": "Selected Preset",
+          "hvac_mode": "Selected Mode",
+          "temp": "Target Temperature",
+          "fan": "Fan Speed"
+        }
+      },
+      "climate_management": {
+        "title": "Klimaanlagenverwaltung",
+        "menu_options": {
+          "add_climate": "Neue Klimaanlage hinzufügen",
+          "edit_climate": "Bestehende Klimaanlage bearbeiten",
+          "remove_climate": "Bestehende Klimaanlage entfernen",
+          "back_to_devices": "⬅️ Zurück zur Geräteverwaltung"
+        }
+      },
+      "generic_management": {
+        "title": "Verwaltung allgemeiner Geräte",
+        "menu_options": {
+          "add_generic": "Neues allgemeines Gerät hinzufügen",
+          "remove_generic": "Bestehendes allgemeines Gerät entfernen",
+          "back_to_devices": "⬅️ Zurück zur Geräteverwaltung"
+        }
+      },
+      "sensor_management": {
+        "title": "Verwaltung von Temperatur-/Feuchtigkeitssensoren",
+        "menu_options": {
+          "add_sensor": "Neuen Temperatur-/Feuchtigkeitssensor hinzufügen",
+          "remove_sensor": "Bestehenden Temperatur-/Feuchtigkeitssensor entfernen",
+          "back_to_devices": "⬅️ Zurück zur Geräteverwaltung"
+        }
+      },
+      "add_climate": {
+        "title": "Klimaanlage hinzufügen",
+        "description": "Geben Sie die Daten ein, um eine neue Klimaanlage zu koppeln.",
+        "data": {
+          "infrared_id": "Infrarot-Hub-ID",
+          "device_id": "Klimaanlagen-ID",
+          "name": "Name der Klimaanlage",
+          "temperature_sensor": "Temperatursensor",
+          "humidity_sensor": "Feuchtigkeitssensor",
+          "min_temp": "Mindesttemperatur",
+          "max_temp": "Höchsttemperatur",
+          "temp_step": "Temperaturschritt",
+          "hvac_modes": "Unterstützte HVAC-Modi",
+          "fan_modes": "Unterstützte Ventilatormodi",
+          "preset_modes": "Unterstützte Preset-Modi",
+          "hvac_presets": "Automatische HVAC-Voreinstellungen",
+          "optional_entities": "Optionale Entitäten"
+        },
+        "sections": {
+          "compatibility_options": {
+            "name": "Kompatibilitätsoptionen",
+            "data": {
+              "hvac_power_on": "Beim Einstellen des HVAC-Modus einschalten erzwingen",
+              "temp_power_on": "Beim Einstellen der Temperatur einschalten erzwingen",
+              "fan_power_on": "Beim Einstellen der Ventilatorgeschwindigkeit einschalten erzwingen",
+              "dry_min_temp": "Mindesttemperatur im Entfeuchtungsmodus festlegen",
+              "dry_min_fan": "Minimale Ventilatorgeschwindigkeit im Entfeuchtungsmodus festlegen",
+              "custom_power_on": "Benutzerdefinierte Einschalttaste (NUR wenn das standardmäßige Einschalten fehlschlägt)"
+            }
+          }
+        }
+      },
+      "edit_climate": {
+        "title": "Klimaanlage bearbeiten",
+        "description": "Aktualisieren Sie die Optionen für die Klimaanlage.",
+        "data": {
+          "temperature_sensor": "Temperatursensor",
+          "humidity_sensor": "Feuchtigkeitssensor",
+          "min_temp": "Mindesttemperatur",
+          "max_temp": "Höchsttemperatur",
+          "temp_step": "Temperaturschritt",
+          "hvac_modes": "Unterstützte HVAC-Modi",
+          "fan_modes": "Unterstützte Ventilatormodi",
+          "preset_modes": "Unterstützte Preset-Modi",
+          "hvac_presets": "Automatische HVAC-Voreinstellungen",
+          "optional_entities": "Optionale Entitäten"
+        },
+        "sections": {
+          "compatibility_options": {
+            "name": "Kompatibilitätsoptionen",
+            "data": {
+              "hvac_power_on": "Beim Einstellen des HVAC-Modus einschalten erzwingen",
+              "temp_power_on": "Beim Einstellen der Temperatur einschalten erzwingen",
+              "fan_power_on": "Beim Einstellen der Ventilatorgeschwindigkeit einschalten erzwingen",
+              "dry_min_temp": "Mindesttemperatur im Entfeuchtungsmodus festlegen",
+              "dry_min_fan": "Minimale Ventilatorgeschwindigkeit im Entfeuchtungsmodus festlegen",
+              "custom_power_on": "Benutzerdefinierte Einschalttaste (NUR wenn das standardmäßige Einschalten fehlschlägt)"
+            }
+          }
+        }
+      },
+      "remove_climate": {
+        "title": "Klimaanlage entfernen",
+        "description": "Wählen Sie die Klimaanlage aus, die Sie aus dem Hub entfernen möchten.",
+        "data": {
+          "climate_id": "Klimaanlage"
+        }
+      },
+      "add_generic": {
+        "title": "Allgemeines Gerät hinzufügen",
+        "description": "Geben Sie die Daten ein, um ein neues allgemeines Gerät zu koppeln.",
+        "data": {
+          "device_id": "Geräte-ID",
+          "infrared_id": "Infrarot-Hub-ID",
+          "name": "Gerätename"
+        }
+      },
+      "add_sensor": {
+        "title": "Temperatur-/Feuchtigkeitssensor hinzufügen",
+        "description": "Geben Sie die Daten ein, um einen neuen Temperatur-/Feuchtigkeitssensor zu koppeln.",
+        "data": {
+          "device_id": "Geräte-ID",
+          "name": "Gerätename"
+        }
+      },
+      "hub_settings": {
+        "title": "Hub-Einstellungen",
+        "description": "Zugangsdaten und Hub-Optionen ändern.",
+        "data": {
+          "access_id": "Tuya Access ID",
+          "access_secret": "Tuya Access Secret",
+          "country": "Tuya Länder-API",
+          "enable_pulsar": "Tuya Pulsar Stream aktivieren",
+          "climate_update_interval": "Aktualisierungsintervall der Klimaanlage",
+          "sensor_update_interval": "Aktualisierungsintervall des Temperatur-/Feuchtigkeitssensors"
+        }
+      },
+      "select_climate": {
+        "title": "Klimaanlage auswählen",
+        "description": "Wählen Sie die Klimaanlage aus, die Sie verwalten möchten.",
+        "data": {
+          "climate_id": "Klimaanlage"
+        }
+      },
+      "select_generic": {
+        "title": "Allgemeines Gerät auswählen",
+        "description": "Wählen Sie das allgemeine Gerät aus, das Sie verwalten möchten.",
+        "data": {
+          "generic_id": "Allgemeines Gerät"
+        }
+      },
+      "select_sensor": {
+        "title": "Temperatur-/Feuchtigkeitssensor auswählen",
+        "description": "Wählen Sie den Temperatur-/Feuchtigkeitssensor aus, den Sie verwalten möchten.",
+        "data": {
+          "sensor_id": "Temperatur-/Feuchtigkeitssensor"
+        }
+      }
+    },
+    "error": {
+      "cannot_change_access_id": "Die Access ID kann für einen bestehenden Hub nicht geändert werden.",
+      "cannot_connect_to_tuya": "Verbindung zu den Tuya-Servern fehlgeschlagen. Bitte überprüfen Sie Ihr Netzwerk.",
+      "device_already_configured": "Dieses Gerät wurde bereits konfiguriert.",
+      "device_already_configured_on_other_hub": "Dieses Gerät ist bereits auf einem anderen Hub konfiguriert.",
+      "invalid_auth": "Authentifizierung fehlgeschlagen: Ungültige Access ID oder Access Secret.",
+      "invalid_data_center": "Authentifizierung fehlgeschlagen: Ungültiges Rechenzentrum.",
+      "invalid_sensor_type": "Das ausgewählte Gerät ist kein gültiger Temperatur-/Feuchtigkeitssensor.",
+      "tuya_api_error": "Tuya Cloud Fehler: {error_info}"
+    },
+    "abort": {
+      "device_not_found": "Keine Geräte gefunden."
+    }
+  },
+  "exceptions": {
+    "climate_error_turn_on": {
+      "message": "Einschalten fehlgeschlagen"
+    },
+    "climate_error_turn_off": {
+      "message": "Ausschalten fehlgeschlagen"
+    },
+    "climate_error_temperature": {
+      "message": "Temperaturänderung fehlgeschlagen"
+    },
+    "climate_error_fan_mode": {
+      "message": "Ändern der Ventilatorgeschwindigkeit fehlgeschlagen"
+    },
+    "climate_error_hvac_mode": {
+      "message": "Ändern des HVAC-Modus fehlgeschlagen"
+    },
+    "device_error_send_command": {
+      "message": "Befehl konnte nicht gesendet werden"
+    }
+  }
+}

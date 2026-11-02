@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "minor_version": 9,
+  "key": "core.area_registry",
+  "data": {
+    "areas": [
+      {
+        "id": "meeting_room_1",
+        "name": "Meeting Room 1",
+        "icon": "mdi:account-group",
+        "picture": null,
+        "aliases": [
+          "\u0e2b\u0e49\u0e2d\u0e07\u0e1b\u0e23\u0e30\u0e0a\u0e38\u0e21 1"
+        ],
+        "floor_id": null,
+        "humidity_entity_id": null,
+        "temperature_entity_id": null,
+        "labels": [],
+        "created_at": "2026-10-30T07:07:20.791417+00:00",
+        "modified_at": "2026-10-30T07:07:20.791431+00:00"
+      },
+      {
+        "id": "meeting_room_2",
+        "name": "Meeting Room 2",
+        "icon": "mdi:account-group",
+        "picture": null,
+        "aliases": [
+          "\u0e2b\u0e49\u0e2d\u0e07\u0e1b\u0e23\u0e30\u0e0a\u0e38\u0e21 2"
+        ],
+        "floor_id": null,
+        "humidity_entity_id": null,
+        "temperature_entity_id": null,
+        "labels": [],
+        "created_at": "2026-10-30T07:07:20.792711+00:00",
+        "modified_at": "2026-10-30T07:07:20.792714+00:00"
+      },
+      {
+        "id": "meeting_room_3",
+        "name": "Meeting Room 3",
+        "icon": "mdi:account-group",
+        "picture": null,
+        "aliases": [
+          "\u0e2b\u0e49\u0e2d\u0e07\u0e1b\u0e23\u0e30\u0e0a\u0e38\u0e21 3"
+        ],
+        "floor_id": null,
+        "humidity_entity_id": null,
+        "temperature_entity_id": null,
+        "labels": [],
+        "created_at": "2026-10-30T07:07:20.792744+00:00",
+        "modified_at": "2026-10-30T07:07:20.792744+00:00"
+      }
+    ]
+  }
+}

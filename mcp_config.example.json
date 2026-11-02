@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "homeassistant": {
+      "url": "http://10.10.193.99:8123/mcp_server/sse",
+      "headers": {
+        "Authorization": "Bearer YOUR_HOME_ASSISTANT_LONG_LIVED_ACCESS_TOKEN"
+      }
+    }
+  }
+}

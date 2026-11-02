@@ -1,0 +1,35 @@
+# Environments & Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Home Assistant Database & Logs
+config/home-assistant_v2.db*
+config/*.log
+config/*.log.*
+config/.ha_run.lock
+config/.HA_VERSION
+config/.cache/
+config/.cloud/
+config/deps/
+config/tts/
+config/blueprints/.cache/
+
+# Home Assistant ephemeral / user authentication storage
+config/.storage/auth*
+config/.storage/onboarding
+config/.storage/core.uuid
+config/.storage/http*
+config/.storage/core.restore_state
+
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini

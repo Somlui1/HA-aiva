@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "frontend.system_data",
+  "data": {
+    "core": {
+      "onboarded_version": "2026.10.4",
+      "onboarded_date": "2026-10-30T07:07:51.122Z",
+      "default_panel": "lovelace"
+    },
+    "home": {
+      "shortcuts": [
+        {
+          "type": "summary",
+          "key": "light"
+        },
+        {
+          "type": "summary",
+          "key": "climate"
+        },
+        {
+          "type": "summary",
+          "key": "security"
+        },
+        {
+          "type": "summary",
+          "key": "media_players"
+        },
+        {
+          "type": "summary",
+          "key": "maintenance"
+        },
+        {
+          "type": "summary",
+          "key": "weather"
+        },
+        {
+          "type": "summary",
+          "key": "energy"
+        },
+        {
+          "type": "custom",
+          "path": "/config/script"
+        }
+      ]
+    }
+  }
+}
