@@ -20,13 +20,7 @@ climate:
     device_code: 1181
     controller_data: remote.zs05_zigbee_ir
 
-  - platform: smartir
-    name: "Eminent AC"
-    unique_id: eminent_gateway_ac
-    device_code: 1181
-    controller_data: remote.tunya_gateway_ir
-
-# Input Helpers (for manual template devices if needed)
+# Input Helpers (for manual template devices)
 input_select:
   carrier_ac_mode:
     name: "Carrier AC Mode"
@@ -36,9 +30,26 @@ input_select:
     initial: "off"
     icon: mdi:air-conditioner
 
+  eminent_ac_mode:
+    name: "Eminent AC Mode"
+    options:
+      - "off"
+      - "cool"
+    initial: "off"
+    icon: mdi:air-conditioner
+
 input_number:
   carrier_ac_temp:
     name: "Carrier AC Target Temp"
+    min: 18
+    max: 30
+    step: 1
+    initial: 25
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer
+
+  eminent_ac_temp:
+    name: "Eminent AC Target Temp"
     min: 18
     max: 30
     step: 1
@@ -104,3 +115,60 @@ template:
             data:
               device: carrier
               command: "cool_{{ temperature | int }}"
+
+      # ==========================================
+      # 2. Eminent AC (Manual Template - Real Remote)
+      # ==========================================
+      - name: "Eminent AC"
+        unique_id: eminent_gateway_ac
+        hvac_modes: "off, cool"
+        min_temperature: 18
+        max_temperature: 30
+        target_temperature_step: 1
+        hvac_mode: "{{ states('input_select.eminent_ac_mode') }}"
+        target_temperature: "{{ states('input_number.eminent_ac_temp') | float(25) }}"
+        current_temperature: "{{ states('input_number.eminent_ac_temp') | float(25) }}"
+        set_hvac_mode:
+          - action: input_select.select_option
+            target:
+              entity_id: input_select.eminent_ac_mode
+            data:
+              option: "{{ hvac_mode }}"
+          - choose:
+              - conditions:
+                  - condition: template
+                    value_template: "{{ hvac_mode == 'off' }}"
+                sequence:
+                  - action: remote.send_command
+                    target:
+                      entity_id: remote.tunya_gateway_ir
+                    data:
+                      device: eminent
+                      command: power_off
+              - conditions:
+                  - condition: template
+                    value_template: "{{ hvac_mode == 'cool' }}"
+                sequence:
+                  - action: remote.send_command
+                    target:
+                      entity_id: remote.tunya_gateway_ir
+                    data:
+                      device: eminent
+                      command: cool_25
+        set_temperature:
+          - action: input_number.set_value
+            target:
+              entity_id: input_number.eminent_ac_temp
+            data:
+              value: "{{ temperature }}"
+          - action: input_select.select_option
+            target:
+              entity_id: input_select.eminent_ac_mode
+            data:
+              option: "cool"
+          - action: remote.send_command
+            target:
+              entity_id: remote.tunya_gateway_ir
+            data:
+              device: eminent
+              command: cool_25
