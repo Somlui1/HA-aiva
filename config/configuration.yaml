@@ -15,10 +15,10 @@ smartir:
 # SmartIR Climate Devices
 climate:
   - platform: smartir
-    name: "Eminent AC"
-    unique_id: eminent_ac
+    name: "ZS05_eminent"
+    unique_id: zs05_eminent
     device_code: 1181
-    controller_data: remote.tunya_gateway_ir
+    controller_data: remote.zs05_zigbee_ir
 
 # Input Helpers (for manual template devices if needed)
 input_select:
