@@ -40,8 +40,8 @@ if sys.platform == "win32":
 
 # ---------------- Gateway config (ค่าเดียวกับ ir_copy.py; override ด้วย env ได้) ----------------
 GATEWAY_ID = os.getenv("TUYA_GW_ID", "ebdfd1403f62ed7eb6ysvu")
-GATEWAY_KEY = os.getenv("TUYA_GW_KEY", "za{uf`wXm`I:e[Q3")
-GATEWAY_IP = os.getenv("TUYA_GW_IP", "10.85.217.151")
+GATEWAY_KEY = os.getenv("TUYA_GW_KEY", "-y:NXT'lljVjF<)*")
+GATEWAY_IP = os.getenv("TUYA_GW_IP", "10.10.193.99")
 GATEWAY_VER = float(os.getenv("TUYA_GW_VER", "3.4"))
 SUB_NODE_CID = os.getenv("TUYA_SUB_CID") or None
 

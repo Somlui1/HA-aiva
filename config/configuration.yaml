@@ -29,7 +29,7 @@ input_select:
 input_number:
   carrier_ac_temp:
     name: "Carrier AC Target Temp"
-    min: 18
+    min: 15
     max: 30
     step: 1
     initial: 25
@@ -53,12 +53,12 @@ template:
       - name: "Carrier AC"
         unique_id: carrier_ac
         hvac_modes: "off, cool"
-        min_temperature: 18
+        min_temperature: 15
         max_temperature: 30
         target_temperature_step: 1
         hvac_mode: "{{ states('input_select.carrier_ac_mode') }}"
-        target_temperature: "{{ states('input_number.carrier_ac_temp') | float(25) }}"
-        current_temperature: "{{ states('input_number.carrier_ac_temp') | float(25) }}"
+        target_temperature: "{{ states('input_number.carrier_ac_temp') | int(25) }}"
+        current_temperature: "{{ states('input_number.carrier_ac_temp') | int(25) }}"
         set_hvac_mode:
           - action: input_select.select_option
             target:
@@ -92,11 +92,16 @@ template:
               entity_id: input_number.carrier_ac_temp
             data:
               value: "{{ temperature }}"
-          - action: input_select.select_option
-            target:
-              entity_id: input_select.carrier_ac_mode
-            data:
-              option: "cool"
+          - choose:
+              - conditions:
+                  - condition: template
+                    value_template: "{{ states('input_select.carrier_ac_mode') == 'off' }}"
+                sequence:
+                  - action: input_select.select_option
+                    target:
+                      entity_id: input_select.carrier_ac_mode
+                    data:
+                      option: "cool"
           - action: remote.send_command
             target:
               entity_id: remote.tunya_gateway_ir
