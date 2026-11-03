@@ -7,8 +7,8 @@ if sys.platform == "win32":
 
 # ข้อมูลการเชื่อมต่อ Tuya Gateway
 GATEWAY_ID = "ebdfd1403f62ed7eb6ysvu"
-GATEWAY_KEY = ":):<n1o1X?{-XoMK"
-GATEWAY_IP = "10.10.193.99"
+GATEWAY_KEY = "za{uf`wXm`I:e[Q3"
+GATEWAY_IP = "10.85.217.151"
 
 # ข้อมูลอุปกรณ์ Zigbee ตัวลูก (สวิตช์ 3 ช่อง)
 SUB_DEVICE_ID = "eb2422f0a31bf12000emah"

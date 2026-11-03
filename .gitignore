@@ -33,3 +33,6 @@ config/.storage/core.restore_state
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Local runtime state
+*state.json

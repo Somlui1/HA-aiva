@@ -1,4 +1,3 @@
-
 # Loads default set of integrations. Do not remove.
 default_config:
 
@@ -8,17 +7,6 @@ frontend:
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
-
-# SmartIR Integration
-smartir:
-
-# SmartIR Climate Devices
-climate:
-  - platform: smartir
-    name: "ZS05_eminent"
-    unique_id: zs05_eminent
-    device_code: 1181
-    controller_data: remote.zs05_zigbee_ir
 
 # Input Helpers (for manual template devices)
 input_select:
@@ -50,7 +38,7 @@ input_number:
 
   eminent_ac_temp:
     name: "Eminent AC Target Temp"
-    min: 18
+    min: 15
     max: 30
     step: 1
     initial: 25
@@ -117,17 +105,17 @@ template:
               command: "cool_{{ temperature | int }}"
 
       # ==========================================
-      # 2. Eminent AC (Manual Template - Real Remote)
+      # 2. Eminent AC (Meeting Room 1 - A06-RM-HS0INT-0506)
       # ==========================================
       - name: "Eminent AC"
         unique_id: eminent_gateway_ac
         hvac_modes: "off, cool"
-        min_temperature: 18
+        min_temperature: 15
         max_temperature: 30
         target_temperature_step: 1
         hvac_mode: "{{ states('input_select.eminent_ac_mode') }}"
-        target_temperature: "{{ states('input_number.eminent_ac_temp') | float(25) }}"
-        current_temperature: "{{ states('input_number.eminent_ac_temp') | float(25) }}"
+        target_temperature: "{{ states('input_number.eminent_ac_temp') | int(25) }}"
+        current_temperature: "{{ states('input_number.eminent_ac_temp') | int(25) }}"
         set_hvac_mode:
           - action: input_select.select_option
             target:
@@ -154,21 +142,26 @@ template:
                       entity_id: remote.tunya_gateway_ir
                     data:
                       device: eminent
-                      command: cool_25
+                      command: "cool_{{ states('input_number.eminent_ac_temp') | int(25) }}"
         set_temperature:
           - action: input_number.set_value
             target:
               entity_id: input_number.eminent_ac_temp
             data:
               value: "{{ temperature }}"
-          - action: input_select.select_option
-            target:
-              entity_id: input_select.eminent_ac_mode
-            data:
-              option: "cool"
+          - choose:
+              - conditions:
+                  - condition: template
+                    value_template: "{{ states('input_select.eminent_ac_mode') == 'off' }}"
+                sequence:
+                  - action: input_select.select_option
+                    target:
+                      entity_id: input_select.eminent_ac_mode
+                    data:
+                      option: "cool"
           - action: remote.send_command
             target:
               entity_id: remote.tunya_gateway_ir
             data:
               device: eminent
-              command: cool_25
+              command: "cool_{{ temperature | int }}"
