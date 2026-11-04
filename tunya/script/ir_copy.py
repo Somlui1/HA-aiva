@@ -9,8 +9,8 @@ if sys.platform == "win32":
     sys.stdout.reconfigure(encoding="utf-8")
 
 # ข้อมูล Gateway
-GATEWAY_ID = "ebdfd1403f62ed7eb6ysvu"
-GATEWAY_KEY = "za{uf`wXm`I:e[Q3"
+GATEWAY_ID = "a310acce1e30a9ca83yznt"
+GATEWAY_KEY = "-y:NXT'lljVjF<)*"
 GATEWAY_IP = "10.85.217.151"
 
 # Sub-node CID (เช่น ZS05 Zigbee IR: "bc8d7efffe78a16b")
@@ -44,8 +44,8 @@ else:
 ir.set_socketTimeout(5)
 
 # 3. เริ่มดูดรหัส
-print(">> กรุณากดปุ่มที่รีโมทแอร์จ่อไปที่ตัวรับสัญญาณภายใน 15 วินาที...")
-ir_code = ir.receive_button(timeout=15)
+print(">> กรุณากดปุ่มที่รีโมทแอร์จ่อไปที่ตัวรับสัญญาณภายใน 5 วินาที...")
+ir_code = ir.receive_button(timeout=5)
 
 if isinstance(ir_code, dict) and "Error" in ir_code:
     print(f"\n❌ เกิดข้อผิดพลาดจากอุปกรณ์: {ir_code}")

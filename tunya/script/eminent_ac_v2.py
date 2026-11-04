@@ -42,7 +42,7 @@ if sys.platform == "win32":
     sys.stdout.reconfigure(encoding="utf-8")
 
 GATEWAY_ID = os.getenv("TUYA_GW_ID", "ebdfd1403f62ed7eb6ysvu")
-GATEWAY_KEY = os.getenv("TUYA_GW_KEY", "za{uf`wXm`I:e[Q3")
+GATEWAY_KEY = os.getenv("TUYA_GW_KEY", "-y:NXT'lljVjF<)*")
 GATEWAY_IP = os.getenv("TUYA_GW_IP", "10.85.217.151")
 GATEWAY_VER = float(os.getenv("TUYA_GW_VER", "3.4"))
 SUB_NODE_CID = os.getenv("TUYA_SUB_CID") or None

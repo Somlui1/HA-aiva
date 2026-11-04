@@ -693,9 +693,9 @@ class TuyaLocalDevice(object):
                     if isinstance(retval, dict) and "Error" in retval:
                         last_err_code = retval.get("Err")
                         last_err_msg = retval.get("Error")
-                        if last_err_code == "900":
+                        if last_err_code in ("900", "904"):
                             # Some devices (e.g. IR/RF remotes) never return
-                            # status data; error 900 is their normal response
+                            # status data; error 900 or 904 is their normal response
                             # to a status query. Treat as reachable with no
                             # data so commands can still be sent.
                             self._cached_state["updated_at"] = time()

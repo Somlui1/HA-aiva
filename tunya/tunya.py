@@ -1,81 +1,50 @@
-import sys
+import sys, json, os
 import tinytuya
-
-# ตั้งค่า encoding สำหรับแสดงผลภาษาไทยใน Windows Terminal
-if sys.platform == "win32":
-    sys.stdout.reconfigure(encoding="utf-8")
-
-# ข้อมูลการเชื่อมต่อ Tuya Gateway
-GATEWAY_ID = "ebdfd1403f62ed7eb6ysvu"
-GATEWAY_KEY = "za{uf`wXm`I:e[Q3"
+if sys.platform == "win32": sys.stdout.reconfigure(encoding="utf-8")
+GATEWAY_ID = "a310acce1e30a9ca83yznt"
+GATEWAY_KEY = "-y:NXT'lljVjF<)*"
 GATEWAY_IP = "10.85.217.151"
-
-# ข้อมูลอุปกรณ์ Zigbee ตัวลูก (สวิตช์ 3 ช่อง)
-SUB_DEVICE_ID = "eb2422f0a31bf12000emah"
-SUB_DEVICE_CID = "a4c1387c642f4dbf"  # Node ID / CID ในเครือข่าย Zigbee
-
-print("==========================================")
-print("       Tuya Zigbee Gateway Controller      ")
-print("==========================================")
-print(f"Gateway IP : {GATEWAY_IP}")
-print(f"Gateway ID : {GATEWAY_ID}")
-
-# 1. เชื่อมต่อไปยัง Gateway
-gw = tinytuya.Device(GATEWAY_ID, GATEWAY_IP, GATEWAY_KEY, version=3.4)
-gw.set_socketTimeout(5)
-gw.set_socketRetryLimit(3)
-
-# ค้นหาอุปกรณ์ลูกที่ออนไลน์อยู่ใต้ Gateway
-print("\n[1] กำลังตรวจสอบสถานะอุปกรณ์ Zigbee ภายใต้ Gateway...")
-sub_list = gw.subdev_query()
-
-online_devs = []
-offline_devs = []
-
-if sub_list and isinstance(sub_list, dict) and "data" in sub_list:
-    online_devs = sub_list["data"].get("online", [])
-    offline_devs = sub_list["data"].get("offline", [])
-    print(f"  🟢 ออนไลน์ (Online)  : {online_devs}")
-    print(f"  🔴 ออฟไลน์ (Offline) : {offline_devs}")
+print("==========================================\n       Tuya Zigbee Gateway Controller      \n==========================================")
+print(f"Gateway IP : {GATEWAY_IP}\nGateway ID : {GATEWAY_ID}")
+# โหลดชื่ออุปกรณ์จาก devices.json (ถ้ามี) map ด้วย node_id/cid
+meta = {}
+devices_path = os.path.join(os.path.dirname(__file__), "devices.json") if os.path.exists(os.path.join(os.path.dirname(__file__), "devices.json")) else "devices.json"
+if os.path.exists(devices_path):
+    with open(devices_path, encoding="utf-8") as f:
+        for d in json.load(f):
+            for k in (d.get("node_id"), d.get("cid"), d.get("id")):
+                if k: meta[k] = d
+# เชื่อมต่อ gateway ลอง version 3.4 → 3.5 → 3.3
+gw, sub_list = None, None
+for ver in (3.4, 3.5, 3.3):
+    gw = tinytuya.Device(GATEWAY_ID, GATEWAY_IP, GATEWAY_KEY, version=ver)
+    gw.set_socketTimeout(5); gw.set_socketRetryLimit(3)
+    print(f"\n[1] กำลังตรวจสอบอุปกรณ์ Zigbee (protocol {ver})...")
+    sub_list = gw.subdev_query()
+    if isinstance(sub_list, dict) and "Error" not in sub_list: break
+    print(f"    ✗ ล้มเหลว: {sub_list}")
 else:
-    print("  ⚠️ ไม่สามารถดึงรายการ sub-device ได้โดยตรง (หรือ Gateway ติดการเชื่อมต่ออื่น)")
+    sys.exit("ไม่สามารถเชื่อมต่อ Gateway ได้ ตรวจสอบ IP / Local Key / version")
+data = sub_list.get("data", sub_list)
+online, offline = data.get("online", []) or [], data.get("offline", []) or []
+print(f"\n[2] พบอุปกรณ์ทั้งหมด {len(online)+len(offline)} ตัว (online {len(online)} / offline {len(offline)})")
+print(f"{'#':<3} {'สถานะ':<8} {'CID':<20} {'ชื่อ':<28} {'Product/Model':<25} Device ID")
+print("-"*110)
+for i, (cid, st) in enumerate([(c, "ONLINE") for c in online] + [(c, "OFFLINE") for c in offline], 1):
+    m = meta.get(cid, {})
+    print(f"{i:<3} {st:<8} {cid:<20} {m.get('name','-')[:27]:<28} {(m.get('product_name') or m.get('model') or '-')[:24]:<25} {m.get('id','-')}")
+# อ่านสถานะ DPS ของอุปกรณ์ที่ online
+print("\n[3] สถานะ DPS ของอุปกรณ์ที่ online")
+for cid in online:
+    try:
+        sub = tinytuya.Device(cid, cid=cid, parent=gw)
+        st = sub.status()
+        if isinstance(st, dict):
+            print(f"  {meta.get(cid,{}).get('name',cid)}: {st.get('dps', st)}")
+        else:
+            print(f"  {meta.get(cid,{}).get('name',cid)}: ไม่สามารถอ่านค่า DPS ได้โดยตรง (status: {st})")
+    except Exception as e:
+        print(f"  {cid}: อ่านสถานะไม่ได้ ({e})")
+if not meta: print("\n※ ไม่พบ devices.json จึงแสดงได้เฉพาะ CID ให้รัน 'python -m tinytuya wizard' เพื่อดึงชื่ออุปกรณ์")
 
-print(f"\n[2] กำลังตรวจสอบอุปกรณ์เป้าหมาย (CID: {SUB_DEVICE_CID})...")
-
-if SUB_DEVICE_CID in offline_devs:
-    print(f"  ❌ แจ้งเตือน: อุปกรณ์ CID '{SUB_DEVICE_CID}' ขณะนี้มีสถานะเป็น OFFLINE")
-    print("     -> กรุณาตรวจสอบว่าสวิตช์เปิดเบรกเกอร์/จ่ายไฟอยู่หรือไม่ หรืออยู่ในระยะสัญญาณ Zigbee หรือไม่")
-elif SUB_DEVICE_CID in online_devs:
-    print(f"  ✅ อุปกรณ์ CID '{SUB_DEVICE_CID}' มีสถานะเป็น ONLINE พร้อมรับคำสั่ง")
-else:
-    print(f"  ℹ️ อุปกรณ์ CID '{SUB_DEVICE_CID}' ไม่ปรากฏในรายการ (กำลังพยายามเชื่อมต่อโดยตรง...)")
-
-# 2. สร้าง Sub-device object และเชื่อมโยงเข้ากับ Gateway
-sub = tinytuya.OutletDevice(SUB_DEVICE_ID, cid=SUB_DEVICE_CID, parent=gw)
-sub.set_socketTimeout(5)
-status = sub.status()
-
-print("\n[3] ผลลัพธ์สถานะอุปกรณ์ (DPS):")
-if status and isinstance(status, dict) and "dps" in status:
-    dps = status["dps"]
-    print(f"  - สวิตช์ช่องที่ 1: {'เปิด (ON)' if dps.get('1') else 'ปิด (OFF)'}")
-    print(f"  - สวิตช์ช่องที่ 2: {'เปิด (ON)' if dps.get('2') else 'ปิด (OFF)'}")
-    print(f"  - สวิตช์ช่องที่ 3: {'เปิด (ON)' if dps.get('3') else 'ปิด (OFF)'}")
-    print(f"  -> Raw DPS Data: {dps}")
-
-    print("\n[4] กำลังสั่งควบคุมสวิตช์...")
-    # ตัวอย่างคำสั่ง: สั่งเปิดช่อง 1, ปิดช่อง 2, ปิดช่อง 3
-    print("  - สั่งเปิดช่อง 1 :", sub.turn_on(switch=1))
-    print("  - สั่งปิดช่อง 2  :", sub.turn_off(switch=2))
-    print("  - สั่งปิดช่อง 3  :", sub.turn_off(switch=3))
-
-    # ตรวจสอบสถานะใหม่อีกครั้ง
-    new_status = sub.status()
-    if new_status and isinstance(new_status, dict) and "dps" in new_status:
-        dps = new_status["dps"]
-        print(f"\n  สถานะล่าสุดหลังสั่งงาน -> ช่อง 1: {'ON' if dps.get('1') else 'OFF'} | ช่อง 2: {'ON' if dps.get('2') else 'OFF'} | ช่อง 3: {'ON' if dps.get('3') else 'OFF'}")
-else:
-    print(f"  ⚠️ ผลลัพธ์: {status}")
-    print("  (ไม่สามารถดึงค่า DPS ได้เนื่องจากอุปกรณ์ออฟไลน์ หรือ Gateway ไม่ตอบสนองคำสั่ง sub-device นี้)")
-
-print("\n==========================================")
+#bc8d7efffe78a16b

@@ -36,3 +36,7 @@ desktop.ini
 
 # Local runtime state
 *state.json
+
+# Local backups
+config_backup*/
+

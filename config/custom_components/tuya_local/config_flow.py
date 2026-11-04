@@ -703,7 +703,7 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
                     create_test_device, hass, proto_config
                 )
                 await device.async_refresh()
-                if device.has_returned_state:
+                if device.has_returned_state or config.get(CONF_DEVICE_CID):
                     retval = device
                     break
             except Exception as e:
@@ -720,7 +720,7 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
                 config,
             )
             await device.async_refresh()
-            retval = device if device.has_returned_state else None
+            retval = device if (device.has_returned_state or config.get(CONF_DEVICE_CID)) else None
         except Exception as e:
             _LOGGER.warning("Connection test failed with %s %s", type(e), e)
 

@@ -5,44 +5,7 @@
   "data": {
     "core": {
       "onboarded_version": "2026.10.4",
-      "onboarded_date": "2026-10-30T07:07:51.122Z",
-      "default_panel": "lovelace"
-    },
-    "home": {
-      "shortcuts": [
-        {
-          "type": "summary",
-          "key": "light"
-        },
-        {
-          "type": "summary",
-          "key": "climate"
-        },
-        {
-          "type": "summary",
-          "key": "security"
-        },
-        {
-          "type": "summary",
-          "key": "media_players"
-        },
-        {
-          "type": "summary",
-          "key": "maintenance"
-        },
-        {
-          "type": "summary",
-          "key": "weather"
-        },
-        {
-          "type": "summary",
-          "key": "energy"
-        },
-        {
-          "type": "custom",
-          "path": "/config/script"
-        }
-      ]
+      "onboarded_date": "2026-11-04T03:39:57.882Z"
     }
   }
 }

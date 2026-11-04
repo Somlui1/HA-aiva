@@ -3,21 +3,6 @@
   "minor_version": 2,
   "key": "repairs.issue_registry",
   "data": {
-    "issues": [
-      {
-        "created": "2026-10-30T09:01:27.895525+00:00",
-        "dismissed_version": null,
-        "domain": "lovelace",
-        "is_persistent": false,
-        "issue_id": "yaml_mode_deprecated"
-      },
-      {
-        "created": "2026-11-02T03:00:13.607190+00:00",
-        "dismissed_version": "2026.10.4",
-        "domain": "homeassistant",
-        "is_persistent": false,
-        "issue_id": "entity_own_area_without_own_name_98a9a40e269f00a17e63ca6ceb7a55b4"
-      }
-    ]
+    "issues": []
   }
 }
