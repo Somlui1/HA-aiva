@@ -11,14 +11,14 @@ eminent_ac_v3.py - Eminent A06-RM-HS0INT-0506 IR controller + ชุดทดส
   คำสั่ง `test` ทำการทดลองนี้ทีละปุ่ม แล้วบันทึกผลลง eminent_test_log.txt
 
 คำสั่ง
-  python eminent_ac_v3.py test                 ทดสอบ A/B แบบโต้ตอบ (แนะนำให้รันก่อน)
-  python eminent_ac_v3.py raw fan_high         ส่งสัญญาณดิบที่จับจากรีโมท
-  python eminent_ac_v3.py raw --list
-  python eminent_ac_v3.py set --mode cool --temp 24 --fan high
-  python eminent_ac_v3.py set --fan high --frames 2      ส่ง frame ซ้ำ 2 ครั้งในสัญญาณเดียว
-  python eminent_ac_v3.py off
-  python eminent_ac_v3.py decode <base64>
-  python eminent_ac_v3.py selftest
+  python tunya\script\eminent_ac_v3.py test                 ทดสอบ A/B แบบโต้ตอบ (แนะนำให้รันก่อน)
+  python tunya\script\eminent_ac_v3.py raw fan_high         ส่งสัญญาณดิบที่จับจากรีโมท
+  python tunya\script\eminent_ac_v3.py raw --list
+  python tunya\script\eminent_ac_v3.py set --mode cool --temp 24 --fan high
+  python tunya\script\eminent_ac_v3.py set --fan high --frames 2      ส่ง frame ซ้ำ 2 ครั้งในสัญญาณเดียว
+  python tunya\script\eminent_ac_v3.py off
+  python tunya\script\eminent_ac_v3.py decode <base64>
+  python tunya\script\eminent_ac_v3.py selftest
   เพิ่ม --dry-run หน้า subcommand เพื่อดูรหัสโดยไม่ส่ง
 
 Frame (16 nibble, MSB-first) - bit ตรงกับรีโมททุกชุดที่จับได้

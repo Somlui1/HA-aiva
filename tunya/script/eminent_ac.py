@@ -15,15 +15,15 @@ eminent_ac.py - ควบคุมแอร์ Eminent (รีโมท A06-RM-H
     ยังไม่ทราบความหมาย -> ใช้คำสั่ง learn + analyze เพื่อหาเพิ่ม
 
 คำสั่ง:
-  python eminent_ac.py selftest                 ตรวจว่า encoder สร้างรหัสตรงกับที่จับได้ทั้ง 16 ชุด
-  python eminent_ac.py temp 25                  ส่งคำสั่งตั้งอุณหภูมิ (สร้างรหัสเอง ไม่ต้อง learn)
-  python eminent_ac.py temp 25 --base cool_low  ตั้งอุณหภูมิโดยใช้ state จากปุ่มที่ learn ไว้ (คง mode/fan เดิม)
-  python eminent_ac.py learn power_on           จับสัญญาณปุ่มจริงแล้วบันทึกเข้า eminent_codes.json
-  python eminent_ac.py send power_on            ส่งรหัสที่ learn ไว้
-  python eminent_ac.py list                     แสดงรหัสที่บันทึกไว้ทั้งหมด (พร้อม nibble)
-  python eminent_ac.py decode <base64>          ถอดรหัส base64 ของ Tuya
-  python eminent_ac.py analyze                  เทียบ nibble ของทุกปุ่มกับ frame อ้างอิง เพื่อหาตำแหน่ง mode/fan/...
-  python eminent_ac.py --dry-run temp 25        สร้างรหัสโดยไม่ส่งจริง
+  python tunya\script\eminent_ac.py selftest                 ตรวจว่า encoder สร้างรหัสตรงกับที่จับได้ทั้ง 16 ชุด
+  python tunya\script\eminent_ac.py temp 25                  ส่งคำสั่งตั้งอุณหภูมิ (สร้างรหัสเอง ไม่ต้อง learn)
+  python tunya\script\eminent_ac.py temp 25 --base cool_low  ตั้งอุณหภูมิโดยใช้ state จากปุ่มที่ learn ไว้ (คง mode/fan เดิม)
+  python tunya\script\eminent_ac.py learn power_on           จับสัญญาณปุ่มจริงแล้วบันทึกเข้า eminent_codes.json
+  python tunya\script\eminent_ac.py send power_on            ส่งรหัสที่ learn ไว้
+  python tunya\script\eminent_ac.py list                     แสดงรหัสที่บันทึกไว้ทั้งหมด (พร้อม nibble)
+  python tunya\script\eminent_ac.py decode <base64>          ถอดรหัส base64 ของ Tuya
+  python tunya\script\eminent_ac.py analyze                  เทียบ nibble ของทุกปุ่มกับ frame อ้างอิง เพื่อหาตำแหน่ง mode/fan/...
+  python tunya\script\eminent_ac.py --dry-run temp 25        สร้างรหัสโดยไม่ส่งจริง
 
 หมายเหตุ: Tuya Gateway รับได้ 1 connection -> ถ้า Home Assistant ต่ออยู่ ให้หยุดก่อน (docker compose stop)
 """

@@ -28,6 +28,10 @@ config/.storage/onboarding
 config/.storage/core.uuid
 config/.storage/http*
 config/.storage/core.restore_state
+config/.storage/hacs.*
+config/.storage/lovelace.map
+config/.storage/trace.saved_traces
+config/.storage/bluetooth.*
 
 # Operating System files
 .DS_Store
