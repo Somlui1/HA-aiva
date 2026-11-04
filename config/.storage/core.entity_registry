@@ -316,7 +316,7 @@
         "translation_key": "solar_elevation",
         "unique_id": "01M6JA5RB2X2KN591ZW2YVHXT4-solar_elevation",
         "previous_unique_id": null,
-        "unit_of_measurement": "\u00b0"
+        "unit_of_measurement": "°"
       },
       {
         "aliases": [],
@@ -354,7 +354,7 @@
         "translation_key": "solar_azimuth",
         "unique_id": "01M6JA5RB2X2KN591ZW2YVHXT4-solar_azimuth",
         "previous_unique_id": null,
-        "unit_of_measurement": "\u00b0"
+        "unit_of_measurement": "°"
       },
       {
         "aliases": [],
@@ -727,6 +727,718 @@
         "supported_features": 3,
         "translation_key": null,
         "unique_id": "home",
+        "previous_unique_id": null,
+        "unit_of_measurement": null
+      },
+      {
+        "aliases": [],
+        "aliases_v2": [
+          null
+        ],
+        "area_id": null,
+        "categories": {},
+        "capabilities": {
+          "options": [
+            "off",
+            "cool"
+          ]
+        },
+        "config_entry_id": null,
+        "config_subentry_id": null,
+        "created_at": "2026-11-04T07:35:25.927203+00:00",
+        "device_class": null,
+        "device_id": null,
+        "disabled_by": null,
+        "entity_category": null,
+        "entity_id": "input_select.carrier_ac_gw_mode",
+        "hidden_by": null,
+        "icon": null,
+        "id": "b1b9baf7bfcf69ec63f34e10dda88e7a",
+        "has_entity_name": false,
+        "labels": [],
+        "modified_at": "2026-11-04T07:35:27.765256+00:00",
+        "name": null,
+        "object_id_base": null,
+        "options": {
+          "conversation": {
+            "should_expose": false
+          }
+        },
+        "original_device_class": null,
+        "original_icon": "mdi:air-conditioner",
+        "original_name": "Carrier AC (Gateway) Mode",
+        "platform": "input_select",
+        "suggested_object_id": "carrier_ac_gw_mode",
+        "supported_features": 0,
+        "translation_key": null,
+        "unique_id": "carrier_ac_gw_mode",
+        "previous_unique_id": null,
+        "unit_of_measurement": null
+      },
+      {
+        "aliases": [],
+        "aliases_v2": [
+          null
+        ],
+        "area_id": null,
+        "categories": {},
+        "capabilities": {
+          "options": [
+            "off",
+            "cool"
+          ]
+        },
+        "config_entry_id": null,
+        "config_subentry_id": null,
+        "created_at": "2026-11-04T07:35:25.927965+00:00",
+        "device_class": null,
+        "device_id": null,
+        "disabled_by": null,
+        "entity_category": null,
+        "entity_id": "input_select.carrier_ac_zs05_mode",
+        "hidden_by": null,
+        "icon": null,
+        "id": "31a64a5a2ba28fcad1f2995a558844ec",
+        "has_entity_name": false,
+        "labels": [],
+        "modified_at": "2026-11-04T07:35:27.765368+00:00",
+        "name": null,
+        "object_id_base": null,
+        "options": {
+          "conversation": {
+            "should_expose": false
+          }
+        },
+        "original_device_class": null,
+        "original_icon": "mdi:air-conditioner",
+        "original_name": "Carrier AC (ZS05) Mode",
+        "platform": "input_select",
+        "suggested_object_id": "carrier_ac_zs05_mode",
+        "supported_features": 0,
+        "translation_key": null,
+        "unique_id": "carrier_ac_zs05_mode",
+        "previous_unique_id": null,
+        "unit_of_measurement": null
+      },
+      {
+        "aliases": [],
+        "aliases_v2": [
+          null
+        ],
+        "area_id": null,
+        "categories": {},
+        "capabilities": {
+          "options": [
+            "off",
+            "cool"
+          ]
+        },
+        "config_entry_id": null,
+        "config_subentry_id": null,
+        "created_at": "2026-11-04T07:35:25.928319+00:00",
+        "device_class": null,
+        "device_id": null,
+        "disabled_by": null,
+        "entity_category": null,
+        "entity_id": "input_select.eminent_ac_gw_mode",
+        "hidden_by": null,
+        "icon": null,
+        "id": "5f216a28fd923560feacfc5711e47102",
+        "has_entity_name": false,
+        "labels": [],
+        "modified_at": "2026-11-04T07:35:27.765417+00:00",
+        "name": null,
+        "object_id_base": null,
+        "options": {
+          "conversation": {
+            "should_expose": false
+          }
+        },
+        "original_device_class": null,
+        "original_icon": "mdi:air-conditioner",
+        "original_name": "Eminent AC (Gateway) Mode",
+        "platform": "input_select",
+        "suggested_object_id": "eminent_ac_gw_mode",
+        "supported_features": 0,
+        "translation_key": null,
+        "unique_id": "eminent_ac_gw_mode",
+        "previous_unique_id": null,
+        "unit_of_measurement": null
+      },
+      {
+        "aliases": [],
+        "aliases_v2": [
+          null
+        ],
+        "area_id": null,
+        "categories": {},
+        "capabilities": {
+          "options": [
+            "off",
+            "cool"
+          ]
+        },
+        "config_entry_id": null,
+        "config_subentry_id": null,
+        "created_at": "2026-11-04T07:35:25.928652+00:00",
+        "device_class": null,
+        "device_id": null,
+        "disabled_by": null,
+        "entity_category": null,
+        "entity_id": "input_select.eminent_ac_zs05_mode",
+        "hidden_by": null,
+        "icon": null,
+        "id": "6d07a5abdce7d2903c6ffa364af8185f",
+        "has_entity_name": false,
+        "labels": [],
+        "modified_at": "2026-11-04T07:35:27.765459+00:00",
+        "name": null,
+        "object_id_base": null,
+        "options": {
+          "conversation": {
+            "should_expose": false
+          }
+        },
+        "original_device_class": null,
+        "original_icon": "mdi:air-conditioner",
+        "original_name": "Eminent AC (ZS05) Mode",
+        "platform": "input_select",
+        "suggested_object_id": "eminent_ac_zs05_mode",
+        "supported_features": 0,
+        "translation_key": null,
+        "unique_id": "eminent_ac_zs05_mode",
+        "previous_unique_id": null,
+        "unit_of_measurement": null
+      },
+      {
+        "aliases": [],
+        "aliases_v2": [
+          null
+        ],
+        "area_id": null,
+        "categories": {},
+        "capabilities": {
+          "min": 17.0,
+          "max": 30.0,
+          "step": 1.0,
+          "mode": "slider"
+        },
+        "config_entry_id": null,
+        "config_subentry_id": null,
+        "created_at": "2026-11-04T07:35:25.929500+00:00",
+        "device_class": null,
+        "device_id": null,
+        "disabled_by": null,
+        "entity_category": null,
+        "entity_id": "input_number.carrier_ac_gw_temp",
+        "hidden_by": null,
+        "icon": null,
+        "id": "c2caf48dfd3d5c3dcd0917aa14595331",
+        "has_entity_name": false,
+        "labels": [],
+        "modified_at": "2026-11-04T07:35:27.765493+00:00",
+        "name": null,
+        "object_id_base": null,
+        "options": {
+          "conversation": {
+            "should_expose": false
+          }
+        },
+        "original_device_class": null,
+        "original_icon": "mdi:thermometer",
+        "original_name": "Carrier AC (Gateway) Target Temp",
+        "platform": "input_number",
+        "suggested_object_id": "carrier_ac_gw_temp",
+        "supported_features": 0,
+        "translation_key": null,
+        "unique_id": "carrier_ac_gw_temp",
+        "previous_unique_id": null,
+        "unit_of_measurement": "°C"
+      },
+      {
+        "aliases": [],
+        "aliases_v2": [
+          null
+        ],
+        "area_id": null,
+        "categories": {},
+        "capabilities": {
+          "min": 17.0,
+          "max": 30.0,
+          "step": 1.0,
+          "mode": "slider"
+        },
+        "config_entry_id": null,
+        "config_subentry_id": null,
+        "created_at": "2026-11-04T07:35:25.929742+00:00",
+        "device_class": null,
+        "device_id": null,
+        "disabled_by": null,
+        "entity_category": null,
+        "entity_id": "input_number.carrier_ac_zs05_temp",
+        "hidden_by": null,
+        "icon": null,
+        "id": "18695fe12bc14a84e5ab3b11c69df179",
+        "has_entity_name": false,
+        "labels": [],
+        "modified_at": "2026-11-04T07:35:27.765529+00:00",
+        "name": null,
+        "object_id_base": null,
+        "options": {
+          "conversation": {
+            "should_expose": false
+          }
+        },
+        "original_device_class": null,
+        "original_icon": "mdi:thermometer",
+        "original_name": "Carrier AC (ZS05) Target Temp",
+        "platform": "input_number",
+        "suggested_object_id": "carrier_ac_zs05_temp",
+        "supported_features": 0,
+        "translation_key": null,
+        "unique_id": "carrier_ac_zs05_temp",
+        "previous_unique_id": null,
+        "unit_of_measurement": "°C"
+      },
+      {
+        "aliases": [],
+        "aliases_v2": [
+          null
+        ],
+        "area_id": null,
+        "categories": {},
+        "capabilities": {
+          "min": 15.0,
+          "max": 30.0,
+          "step": 1.0,
+          "mode": "slider"
+        },
+        "config_entry_id": null,
+        "config_subentry_id": null,
+        "created_at": "2026-11-04T07:35:25.929897+00:00",
+        "device_class": null,
+        "device_id": null,
+        "disabled_by": null,
+        "entity_category": null,
+        "entity_id": "input_number.eminent_ac_gw_temp",
+        "hidden_by": null,
+        "icon": null,
+        "id": "7fe09253a50e15c77e3741220bc27906",
+        "has_entity_name": false,
+        "labels": [],
+        "modified_at": "2026-11-04T07:35:27.765562+00:00",
+        "name": null,
+        "object_id_base": null,
+        "options": {
+          "conversation": {
+            "should_expose": false
+          }
+        },
+        "original_device_class": null,
+        "original_icon": "mdi:thermometer",
+        "original_name": "Eminent AC (Gateway) Target Temp",
+        "platform": "input_number",
+        "suggested_object_id": "eminent_ac_gw_temp",
+        "supported_features": 0,
+        "translation_key": null,
+        "unique_id": "eminent_ac_gw_temp",
+        "previous_unique_id": null,
+        "unit_of_measurement": "°C"
+      },
+      {
+        "aliases": [],
+        "aliases_v2": [
+          null
+        ],
+        "area_id": null,
+        "categories": {},
+        "capabilities": {
+          "min": 15.0,
+          "max": 30.0,
+          "step": 1.0,
+          "mode": "slider"
+        },
+        "config_entry_id": null,
+        "config_subentry_id": null,
+        "created_at": "2026-11-04T07:35:25.930077+00:00",
+        "device_class": null,
+        "device_id": null,
+        "disabled_by": null,
+        "entity_category": null,
+        "entity_id": "input_number.eminent_ac_zs05_temp",
+        "hidden_by": null,
+        "icon": null,
+        "id": "8add41b36bc10831a1f426883a53defd",
+        "has_entity_name": false,
+        "labels": [],
+        "modified_at": "2026-11-04T07:35:27.765593+00:00",
+        "name": null,
+        "object_id_base": null,
+        "options": {
+          "conversation": {
+            "should_expose": false
+          }
+        },
+        "original_device_class": null,
+        "original_icon": "mdi:thermometer",
+        "original_name": "Eminent AC (ZS05) Target Temp",
+        "platform": "input_number",
+        "suggested_object_id": "eminent_ac_zs05_temp",
+        "supported_features": 0,
+        "translation_key": null,
+        "unique_id": "eminent_ac_zs05_temp",
+        "previous_unique_id": null,
+        "unit_of_measurement": "°C"
+      },
+      {
+        "aliases": [],
+        "aliases_v2": [
+          null
+        ],
+        "area_id": null,
+        "categories": {},
+        "capabilities": {
+          "hvac_modes": [
+            "off",
+            "cool"
+          ],
+          "min_temp": 17.0,
+          "max_temp": 30.0,
+          "target_temp_step": 1.0
+        },
+        "config_entry_id": null,
+        "config_subentry_id": null,
+        "created_at": "2026-11-04T07:35:26.753975+00:00",
+        "device_class": null,
+        "device_id": null,
+        "disabled_by": null,
+        "entity_category": null,
+        "entity_id": "climate.carrier_ac_gateway_ir",
+        "hidden_by": null,
+        "icon": null,
+        "id": "1dfa39755009cb4fb148db6658f24465",
+        "has_entity_name": false,
+        "labels": [],
+        "modified_at": "2026-11-04T07:54:31.656696+00:00",
+        "name": null,
+        "object_id_base": "Carrier AC Gateway IR",
+        "options": {
+          "conversation": {
+            "should_expose": true
+          }
+        },
+        "original_device_class": null,
+        "original_icon": null,
+        "original_name": "Carrier AC Gateway IR",
+        "platform": "template",
+        "suggested_object_id": null,
+        "supported_features": 387,
+        "translation_key": null,
+        "unique_id": "carrier_ac_gateway",
+        "previous_unique_id": null,
+        "unit_of_measurement": null
+      },
+      {
+        "aliases": [],
+        "aliases_v2": [
+          null
+        ],
+        "area_id": null,
+        "categories": {},
+        "capabilities": {
+          "hvac_modes": [
+            "off",
+            "cool"
+          ],
+          "min_temp": 17.0,
+          "max_temp": 30.0,
+          "target_temp_step": 1.0
+        },
+        "config_entry_id": null,
+        "config_subentry_id": null,
+        "created_at": "2026-11-04T07:35:26.754485+00:00",
+        "device_class": null,
+        "device_id": null,
+        "disabled_by": null,
+        "entity_category": null,
+        "entity_id": "climate.carrier_ac_zs05_ir",
+        "hidden_by": null,
+        "icon": null,
+        "id": "d281b6cebc73bdfbc5ec47b63282edfc",
+        "has_entity_name": false,
+        "labels": [],
+        "modified_at": "2026-11-04T07:54:31.657038+00:00",
+        "name": null,
+        "object_id_base": "Carrier AC ZS05 IR",
+        "options": {
+          "conversation": {
+            "should_expose": true
+          }
+        },
+        "original_device_class": null,
+        "original_icon": null,
+        "original_name": "Carrier AC ZS05 IR",
+        "platform": "template",
+        "suggested_object_id": null,
+        "supported_features": 387,
+        "translation_key": null,
+        "unique_id": "carrier_ac_zs05",
+        "previous_unique_id": null,
+        "unit_of_measurement": null
+      },
+      {
+        "aliases": [],
+        "aliases_v2": [
+          null
+        ],
+        "area_id": null,
+        "categories": {},
+        "capabilities": {
+          "hvac_modes": [
+            "off",
+            "cool"
+          ],
+          "min_temp": 15.0,
+          "max_temp": 30.0,
+          "target_temp_step": 1.0
+        },
+        "config_entry_id": null,
+        "config_subentry_id": null,
+        "created_at": "2026-11-04T07:35:26.754810+00:00",
+        "device_class": null,
+        "device_id": null,
+        "disabled_by": null,
+        "entity_category": null,
+        "entity_id": "climate.eminent_ac_gateway_ir",
+        "hidden_by": null,
+        "icon": null,
+        "id": "a061956f542be235d2d397cbd5b6c1b0",
+        "has_entity_name": false,
+        "labels": [],
+        "modified_at": "2026-11-04T07:54:31.657289+00:00",
+        "name": null,
+        "object_id_base": "Eminent AC Gateway IR",
+        "options": {
+          "conversation": {
+            "should_expose": true
+          }
+        },
+        "original_device_class": null,
+        "original_icon": null,
+        "original_name": "Eminent AC Gateway IR",
+        "platform": "template",
+        "suggested_object_id": null,
+        "supported_features": 387,
+        "translation_key": null,
+        "unique_id": "eminent_ac_gateway",
+        "previous_unique_id": null,
+        "unit_of_measurement": null
+      },
+      {
+        "aliases": [],
+        "aliases_v2": [
+          null
+        ],
+        "area_id": null,
+        "categories": {},
+        "capabilities": {
+          "hvac_modes": [
+            "off",
+            "cool"
+          ],
+          "min_temp": 15.0,
+          "max_temp": 30.0,
+          "target_temp_step": 1.0
+        },
+        "config_entry_id": null,
+        "config_subentry_id": null,
+        "created_at": "2026-11-04T07:35:26.755023+00:00",
+        "device_class": null,
+        "device_id": null,
+        "disabled_by": null,
+        "entity_category": null,
+        "entity_id": "climate.eminent_ac_zs05_ir",
+        "hidden_by": null,
+        "icon": null,
+        "id": "6816b601ee770747117d1632e8665647",
+        "has_entity_name": false,
+        "labels": [],
+        "modified_at": "2026-11-04T07:54:31.657502+00:00",
+        "name": null,
+        "object_id_base": "Eminent AC ZS05 IR",
+        "options": {
+          "conversation": {
+            "should_expose": true
+          }
+        },
+        "original_device_class": null,
+        "original_icon": null,
+        "original_name": "Eminent AC ZS05 IR",
+        "platform": "template",
+        "suggested_object_id": null,
+        "supported_features": 387,
+        "translation_key": null,
+        "unique_id": "eminent_ac_zs05",
+        "previous_unique_id": null,
+        "unit_of_measurement": null
+      },
+      {
+        "aliases": [],
+        "aliases_v2": [
+          null
+        ],
+        "area_id": null,
+        "categories": {},
+        "capabilities": null,
+        "config_entry_id": "01M6JQYHDSAT2MYYZSYS0KGSKV",
+        "config_subentry_id": null,
+        "created_at": "2026-11-04T07:39:10.214629+00:00",
+        "device_class": null,
+        "device_id": "3471aabce21c0f1ae9cb96ff7a43d4bd",
+        "disabled_by": null,
+        "entity_category": null,
+        "entity_id": "remote.tunya_gateway_ir",
+        "hidden_by": null,
+        "icon": null,
+        "id": "0a20cb42fa47ca9588a7a141cd1a580e",
+        "has_entity_name": true,
+        "labels": [],
+        "modified_at": "2026-11-04T07:39:10.215322+00:00",
+        "name": null,
+        "object_id_base": null,
+        "options": {
+          "conversation": {
+            "should_expose": false
+          }
+        },
+        "original_device_class": null,
+        "original_icon": null,
+        "original_name": null,
+        "platform": "tuya_local",
+        "suggested_object_id": null,
+        "supported_features": 3,
+        "translation_key": null,
+        "unique_id": "a310acce1e30a9ca83yznt-remote",
+        "previous_unique_id": null,
+        "unit_of_measurement": null
+      },
+      {
+        "aliases": [],
+        "aliases_v2": [
+          null
+        ],
+        "area_id": null,
+        "categories": {},
+        "capabilities": null,
+        "config_entry_id": "01M6JQYHDSAT2MYYZSYS0KGSKV",
+        "config_subentry_id": null,
+        "created_at": "2026-11-04T07:39:10.218077+00:00",
+        "device_class": null,
+        "device_id": "3471aabce21c0f1ae9cb96ff7a43d4bd",
+        "disabled_by": null,
+        "entity_category": null,
+        "entity_id": "infrared.tunya_gateway_ir",
+        "hidden_by": null,
+        "icon": null,
+        "id": "b0beed90b51fdeabb0eea592ccce7c84",
+        "has_entity_name": true,
+        "labels": [],
+        "modified_at": "2026-11-04T07:39:10.218778+00:00",
+        "name": null,
+        "object_id_base": null,
+        "options": {
+          "conversation": {
+            "should_expose": false
+          }
+        },
+        "original_device_class": "emitter",
+        "original_icon": null,
+        "original_name": null,
+        "platform": "tuya_local",
+        "suggested_object_id": null,
+        "supported_features": 0,
+        "translation_key": null,
+        "unique_id": "a310acce1e30a9ca83yznt-infrared",
+        "previous_unique_id": null,
+        "unit_of_measurement": null
+      },
+      {
+        "aliases": [],
+        "aliases_v2": [
+          null
+        ],
+        "area_id": null,
+        "categories": {},
+        "capabilities": null,
+        "config_entry_id": "01M6JR1BE03GGHJZGDQHPGVYTA",
+        "config_subentry_id": null,
+        "created_at": "2026-11-04T07:40:41.747395+00:00",
+        "device_class": null,
+        "device_id": "0e29e146bbe242097bac3cb4c0263ba5",
+        "disabled_by": null,
+        "entity_category": null,
+        "entity_id": "infrared.zs05_zigbee_ir",
+        "hidden_by": null,
+        "icon": null,
+        "id": "563557e9a2817e618202c3bcc6b283cb",
+        "has_entity_name": true,
+        "labels": [],
+        "modified_at": "2026-11-04T07:40:41.748616+00:00",
+        "name": null,
+        "object_id_base": null,
+        "options": {
+          "conversation": {
+            "should_expose": false
+          }
+        },
+        "original_device_class": "emitter",
+        "original_icon": null,
+        "original_name": null,
+        "platform": "tuya_local",
+        "suggested_object_id": null,
+        "supported_features": 0,
+        "translation_key": null,
+        "unique_id": "a310acce1e30a9ca83yznt/bc8d7efffe78a16b-infrared",
+        "previous_unique_id": null,
+        "unit_of_measurement": null
+      },
+      {
+        "aliases": [],
+        "aliases_v2": [
+          null
+        ],
+        "area_id": null,
+        "categories": {},
+        "capabilities": null,
+        "config_entry_id": "01M6JR1BE03GGHJZGDQHPGVYTA",
+        "config_subentry_id": null,
+        "created_at": "2026-11-04T07:40:41.753564+00:00",
+        "device_class": null,
+        "device_id": "0e29e146bbe242097bac3cb4c0263ba5",
+        "disabled_by": null,
+        "entity_category": null,
+        "entity_id": "remote.zs05_zigbee_ir",
+        "hidden_by": null,
+        "icon": null,
+        "id": "173c651537bfdc8a600003eacc34dc8c",
+        "has_entity_name": true,
+        "labels": [],
+        "modified_at": "2026-11-04T07:40:41.754330+00:00",
+        "name": null,
+        "object_id_base": null,
+        "options": {
+          "conversation": {
+            "should_expose": false
+          }
+        },
+        "original_device_class": null,
+        "original_icon": null,
+        "original_name": null,
+        "platform": "tuya_local",
+        "suggested_object_id": null,
+        "supported_features": 3,
+        "translation_key": null,
+        "unique_id": "a310acce1e30a9ca83yznt/bc8d7efffe78a16b-remote",
         "previous_unique_id": null,
         "unit_of_measurement": null
       }
