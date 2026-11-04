@@ -1,0 +1,228 @@
+# ==============================================================================
+# TEMPLATE AIR CONDITIONER CONFIGURATION (Carrier & Eminent)
+# ==============================================================================
+# เอกสาร Template สำหรับควบคุมแอร์ผ่านสัญญาณ IR (Carrier และ Eminent)
+# 
+# 📌 วิธีนำไปใช้งาน:
+# ------------------------------------------------------------------------------
+# วิธีที่ 1 (แนะนำ - นำไปวางใน configuration.yaml โดยตรง):
+#    คัดลอกส่วน input_select, input_number และ template ด้านล่างนี้
+#    ไปวางต่อท้ายไฟล์ config/configuration.yaml
+#
+# วิธีที่ 2 (ใช้ include แบบแยกไฟล์):
+#    หากต้องการแยกไฟล์ ให้เพิ่มบรรทัดเหล่านี้ใน configuration.yaml:
+#    homeassistant:
+#      packages:
+#        climate_pack: !include climate_templates.yaml
+#
+# 📌 สิ่งที่ต้องแก้ไข (Mapping):
+# ------------------------------------------------------------------------------
+# 1. ค้นหาคำว่า `YOUR_REMOTE_ENTITY` แล้วเปลี่ยนเป็น Entity ID ของ Remote จริงที่คุณเพิ่มใน HA
+#    ตัวอย่าง:
+#      - รีโมท Gateway: `remote.tunya_gateway_ir`
+#      - รีโมท ZS05:    `remote.zs05_zigbee_ir`
+# 2. (ตัวเลือกเสริม) หากมี Sensor วัดอุณหภูมิห้องจริง ให้แก้ที่ `current_temperature`
+# ==============================================================================
+
+# ==============================================================================
+# 1. INPUT HELPERS (ตัวช่วยจำสถานะโหมดและอุณหภูมิของแอร์)
+# ==============================================================================
+input_select:
+  # สถานะโหมดแอร์ Carrier (off = ปิด, cool = เปิดโหมดทำความเย็น)
+  carrier_ac_mode:
+    name: "Carrier AC Mode"
+    options:
+      - "off"
+      - "cool"
+    initial: "off"
+    icon: mdi:air-conditioner
+
+  # สถานะโหมดแอร์ Eminent (off = ปิด, cool = เปิดโหมดทำความเย็น)
+  eminent_ac_mode:
+    name: "Eminent AC Mode"
+    options:
+      - "off"
+      - "cool"
+    initial: "off"
+    icon: mdi:air-conditioner
+
+input_number:
+  # อุณหภูมิเป้าหมาย Carrier (ช่วง 17°C - 30°C ตามไฟล์ toshiba_ac_cool_codes.csv)
+  carrier_ac_temp:
+    name: "Carrier AC Target Temp"
+    min: 17
+    max: 30
+    step: 1
+    initial: 25
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer
+
+  # อุณหภูมิเป้าหมาย Eminent (ช่วง 15°C - 30°C ตามไฟล์ eminent_cool_codes.txt)
+  eminent_ac_temp:
+    name: "Eminent AC Target Temp"
+    min: 15
+    max: 30
+    step: 1
+    initial: 25
+    unit_of_measurement: "°C"
+    icon: mdi:thermometer
+
+
+# ==============================================================================
+# 2. TEMPLATE CLIMATE PLATFORM (การ์ดแอร์ Thermostat ใน UI)
+# ==============================================================================
+template:
+  - climate:
+      # ========================================================================
+      # [DEVICE 1] แอร์ CARRIER / TOSHIBA
+      # ========================================================================
+      - name: "Carrier AC"
+        unique_id: carrier_ac_climate
+        hvac_modes:
+          - "off"
+          - "cool"
+        min_temperature: 17
+        max_temperature: 30
+        target_temperature_step: 1
+        
+        # อ่านสถานะปัจจุบัน
+        hvac_mode: "{{ states('input_select.carrier_ac_mode') }}"
+        target_temperature: "{{ states('input_number.carrier_ac_temp') | int(25) }}"
+        # แสดงอุณหภูมิปัจจุบัน (หากมี sensor วัดจริง ให้เปลี่ยนเป็น {{ states('sensor.your_room_temp') | float }})
+        current_temperature: "{{ states('input_number.carrier_ac_temp') | int(25) }}"
+        
+        # Action เมื่อกดเปิด/ปิด หรือเปลี่ยนโหมด
+        set_hvac_mode:
+          - action: input_select.select_option
+            target:
+              entity_id: input_select.carrier_ac_mode
+            data:
+              option: "{{ hvac_mode }}"
+          - choose:
+              # 1.1 ถ้าสั่งปิดแอร์ (off)
+              - conditions:
+                  - condition: template
+                    value_template: "{{ hvac_mode == 'off' }}"
+                sequence:
+                  - action: remote.send_command
+                    target:
+                      entity_id: YOUR_REMOTE_ENTITY  # <--- [แก้ตรงนี้] ใส่ entity_id รีโมทจริง
+                    data:
+                      device: carrier
+                      command: power_off
+
+              # 1.2 ถ้าสั่งเปิดแอร์ (cool)
+              - conditions:
+                  - condition: template
+                    value_template: "{{ hvac_mode == 'cool' }}"
+                sequence:
+                  - action: remote.send_command
+                    target:
+                      entity_id: YOUR_REMOTE_ENTITY  # <--- [แก้ตรงนี้] ใส่ entity_id รีโมทจริง
+                    data:
+                      device: carrier
+                      command: "cool_{{ states('input_number.carrier_ac_temp') | int(25) }}"
+
+        # Action เมื่อปรับอุณหภูมิ
+        set_temperature:
+          - action: input_number.set_value
+            target:
+              entity_id: input_number.carrier_ac_temp
+            data:
+              value: "{{ temperature }}"
+          - choose:
+              # ถ้าแอร์ปิดอยู่ ให้เปลี่ยนสถานะเป็น cool
+              - conditions:
+                  - condition: template
+                    value_template: "{{ states('input_select.carrier_ac_mode') == 'off' }}"
+                sequence:
+                  - action: input_select.select_option
+                    target:
+                      entity_id: input_select.carrier_ac_mode
+                    data:
+                      option: "cool"
+          # ยิงสัญญาณ IR ตั้งอุณหภูมิใหม่ทันที
+          - action: remote.send_command
+            target:
+              entity_id: YOUR_REMOTE_ENTITY  # <--- [แก้ตรงนี้] ใส่ entity_id รีโมทจริง
+            data:
+              device: carrier
+              command: "cool_{{ temperature | int }}"
+
+
+      # ========================================================================
+      # [DEVICE 2] แอร์ EMINENT
+      # ========================================================================
+      - name: "Eminent AC"
+        unique_id: eminent_ac_climate
+        hvac_modes:
+          - "off"
+          - "cool"
+        min_temperature: 15
+        max_temperature: 30
+        target_temperature_step: 1
+        
+        # อ่านสถานะปัจจุบัน
+        hvac_mode: "{{ states('input_select.eminent_ac_mode') }}"
+        target_temperature: "{{ states('input_number.eminent_ac_temp') | int(25) }}"
+        # แสดงอุณหภูมิปัจจุบัน (หากมี sensor วัดจริง ให้เปลี่ยนเป็น {{ states('sensor.your_room_temp') | float }})
+        current_temperature: "{{ states('input_number.eminent_ac_temp') | int(25) }}"
+        
+        # Action เมื่อกดเปิด/ปิด หรือเปลี่ยนโหมด
+        set_hvac_mode:
+          - action: input_select.select_option
+            target:
+              entity_id: input_select.eminent_ac_mode
+            data:
+              option: "{{ hvac_mode }}"
+          - choose:
+              # 2.1 ถ้าสั่งปิดแอร์ (off)
+              - conditions:
+                  - condition: template
+                    value_template: "{{ hvac_mode == 'off' }}"
+                sequence:
+                  - action: remote.send_command
+                    target:
+                      entity_id: YOUR_REMOTE_ENTITY  # <--- [แก้ตรงนี้] ใส่ entity_id รีโมทจริง
+                    data:
+                      device: eminent
+                      command: power_off
+
+              # 2.2 ถ้าสั่งเปิดแอร์ (cool)
+              - conditions:
+                  - condition: template
+                    value_template: "{{ hvac_mode == 'cool' }}"
+                sequence:
+                  - action: remote.send_command
+                    target:
+                      entity_id: YOUR_REMOTE_ENTITY  # <--- [แก้ตรงนี้] ใส่ entity_id รีโมทจริง
+                    data:
+                      device: eminent
+                      command: "cool_{{ states('input_number.eminent_ac_temp') | int(25) }}"
+
+        # Action เมื่อปรับอุณหภูมิ
+        set_temperature:
+          - action: input_number.set_value
+            target:
+              entity_id: input_number.eminent_ac_temp
+            data:
+              value: "{{ temperature }}"
+          - choose:
+              # ถ้าแอร์ปิดอยู่ ให้เปลี่ยนสถานะเป็น cool
+              - conditions:
+                  - condition: template
+                    value_template: "{{ states('input_select.eminent_ac_mode') == 'off' }}"
+                sequence:
+                  - action: input_select.select_option
+                    target:
+                      entity_id: input_select.eminent_ac_mode
+                    data:
+                      option: "cool"
+          # ยิงสัญญาณ IR ตั้งอุณหภูมิใหม่ทันที
+          - action: remote.send_command
+            target:
+              entity_id: YOUR_REMOTE_ENTITY  # <--- [แก้ตรงนี้] ใส่ entity_id รีโมทจริง
+            data:
+              device: eminent
+              command: "cool_{{ temperature | int }}"
+
